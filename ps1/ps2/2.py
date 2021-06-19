@@ -18,12 +18,13 @@ while month < 12:
     unpaidMonthlyBalance = balance - monthlyPayment
     monthlyBalance = unpaidMonthlyBalance + monthlyInterestRate * unpaidMonthlyBalance
     balance = monthlyBalance
-    print(balance)
+    print(f'month: {month} balance: {balance})')
     month += 1
     if balance > 0:
         monthlyPayment += increment
     else:
-        break
+        break 
+# create a guess and check algorithm to find the lowest payment
 
 print(balance)
 print('Lowest Payment: {}'.format(monthlyPayment))
