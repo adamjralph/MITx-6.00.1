@@ -11,6 +11,17 @@ def monthlyInterestRate(annualInterestRate):
 
 # print(f'Monthly interest rate: {monthlyInterestRate(annualInterestRate)}')
 
+def lowerBound(balance):
+    return balance / 12
+
+print(lowerBound(balance))
+
+def upperBound(balance, monthlyInterestRate):
+    interestRate = monthlyInterestRate(annualInterestRate)
+    return (balance * (1 + interestRate) ** 12) / 12.0
+
+print(upperBound(balance, monthlyInterestRate))
+
 def updateBalanceMonthly(balance):
     '''
     Assumes b = Monthly uppaid balance (int or float)
@@ -31,10 +42,7 @@ def createBasePayment(balance):
     required for findMinMonthlyPayment():
     Returns int or float
     '''
-    return balance
-# delete this
-# payment = 100
-# delete this    
+    return balance 
 
 def newBalance(balance, payment):
     ''' 
@@ -67,7 +75,7 @@ def findMinMonthlyPayment(balance):
     '''
     success = False
     month = 0
-    payment = 10
+    payment = 0.01 
     adjustedBalance = balance
     while success == False:
         if adjustedBalance <= 0:
