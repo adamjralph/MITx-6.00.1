@@ -1,5 +1,10 @@
-balance = 12349450343452 
+# Finished but not working
+
+
+
+balance = 999999 
 annualInterestRate = 0.2
+payment = 0
 
 def monthlyInterestRate(annualInterestRate):
     '''
@@ -7,7 +12,7 @@ def monthlyInterestRate(annualInterestRate):
     a float.
     Returns monthly interes rate as float
     '''
-    return annualInterestRate / 12.0
+    return annualInterestRate / 13.0
 
 # print(f'Monthly interest rate: {monthlyInterestRate(annualInterestRate)}')
 
@@ -22,16 +27,29 @@ def updateBalanceMonthly(balance):
     '''
     return balance + monthlyInterestRate(annualInterestRate) * balance
 
-# print(f'Update balance: {updateBalanceMonthly(balance)}')
+def lowHighPayment(balance):
+
+    lowerBound = round(balance / 12, 2)
+    print(f'Lower: {lowerBound}')
+    interestRate = monthlyInterestRate(annualInterestRate)
+    upperBound = round((balance * (1 + interestRate) ** 12) / 12.0, 2)
+    print(f'Upper: {upperBound}')
+    lowHigh = [lowerBound, upperBound]
+    return lowHigh 
+
+def bisection(payment, balance):
+
+    lowHigh = lowHighPayment(balance)
+
+    if payment == 0:
+        return (lowHigh[0] + lowHigh[1]) / 2
+    else:
+        if balance > 0:
+            lowHigh[0] = payment
+        elif balance < 0:
+            lowHigh[1]= payment
     
-def createBasePayment(balance):
-    '''
-    Assumes balance int or float
-    Calculates a base payment to guess the number of payments
-    required for findMinMonthlyPayment():
-    Returns int or float
-    '''
-    return balance 
+    return (lowHigh[0] + lowHigh[1]) / 2
 
 def newBalance(balance, payment):
     ''' 
@@ -48,47 +66,13 @@ def newBalance(balance, payment):
     '''
     unpaidMonthlyBalance = balance - payment
     return updateBalanceMonthly(unpaidMonthlyBalance)
-# print(f'New balance: {newBalance(balance, payment)}')
-
 
 def findMinMonthlyPayment(balance):
-    '''
-    Assumes balance, int or fload
-    Calculates the minimum monthly payment required to pay off
-    balance in 12 months.
-    Checks to see if balance can be paid.
-    If not increments by 0.01
-    Returns newBalance as int or float.
-    DEPENDS ON:
-        createBasePayment()
-        updateBalanceMonthly()
-    '''
-    lowerBound = balance / 12
-    print(f'Lower: {lowerBound}')
-    interestRate = monthlyInterestRate(annualInterestRate)
-    upperBound = (balance * (1 + interestRate) ** 12) / 12.0
-    print(f'Upper: {upperBound}')
-
-
-    def bisection(highLow, payment):
-
-        '''
-        Assumes two arguments low and high, both boolean
-        
-        Returns a float
-        '''
-        if highLow == 'high':
-            upperBound = payment
-            
-        elif highLow == 'low':
-            lowerBound = payment 
-        return (upperBound + lowerBound) / 2
-
+    payment = 0 
     success = False
     month = 0
-    increment = 0.01 
     adjustedBalance = balance
-    payment = (lowerBound + upperBound) / 2
+    newPayment = bisection(payment, balance)
     while success == False:
         if adjustedBalance <= 0:
             success = True
@@ -99,13 +83,13 @@ def findMinMonthlyPayment(balance):
                 #print(f'Month: {month} Balance: {adjustedBalance}')
                 month += 1
             if adjustedBalance < 0:
-                payment = bisection('high', payment)
+                payment = bisection(newPayment, balance)
                 month = 0
             elif adjustedBalance > 0:
-                payment = bisection('low', payment)
+                payment = bisection(newPayment, balance)
                 month = 0
                     
         # Set success: break from loop and return new balance
-    return print('Lowest Payment: ' + str(payment))
+    return print('Lowest Payment: ' + str(round(payment,2)))
 
 findMinMonthlyPayment(balance)
