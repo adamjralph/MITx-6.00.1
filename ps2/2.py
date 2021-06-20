@@ -1,4 +1,4 @@
-balance = 3926
+balance = 3456 
 annualInterestRate = 0.2
 
 def monthlyInterestRate(annualInterestRate):

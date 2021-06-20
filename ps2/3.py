@@ -1,4 +1,4 @@
-balance = 3926
+balance = 12349450343452 
 annualInterestRate = 0.2
 
 def monthlyInterestRate(annualInterestRate):
@@ -10,17 +10,6 @@ def monthlyInterestRate(annualInterestRate):
     return annualInterestRate / 12.0
 
 # print(f'Monthly interest rate: {monthlyInterestRate(annualInterestRate)}')
-
-def lowerBound(balance):
-    return balance / 12
-
-print(lowerBound(balance))
-
-def upperBound(balance, monthlyInterestRate):
-    interestRate = monthlyInterestRate(annualInterestRate)
-    return (balance * (1 + interestRate) ** 12) / 12.0
-
-print(upperBound(balance, monthlyInterestRate))
 
 def updateBalanceMonthly(balance):
     '''
@@ -61,6 +50,7 @@ def newBalance(balance, payment):
     return updateBalanceMonthly(unpaidMonthlyBalance)
 # print(f'New balance: {newBalance(balance, payment)}')
 
+
 def findMinMonthlyPayment(balance):
     '''
     Assumes balance, int or fload
@@ -73,10 +63,32 @@ def findMinMonthlyPayment(balance):
         createBasePayment()
         updateBalanceMonthly()
     '''
+    lowerBound = balance / 12
+    print(f'Lower: {lowerBound}')
+    interestRate = monthlyInterestRate(annualInterestRate)
+    upperBound = (balance * (1 + interestRate) ** 12) / 12.0
+    print(f'Upper: {upperBound}')
+
+
+    def bisection(highLow, payment):
+
+        '''
+        Assumes two arguments low and high, both boolean
+        
+        Returns a float
+        '''
+        if highLow == 'high':
+            upperBound = payment
+            
+        elif highLow == 'low':
+            lowerBound = payment 
+        return (upperBound + lowerBound) / 2
+
     success = False
     month = 0
-    payment = 0.01 
+    increment = 0.01 
     adjustedBalance = balance
+    payment = (lowerBound + upperBound) / 2
     while success == False:
         if adjustedBalance <= 0:
             success = True
@@ -86,10 +98,13 @@ def findMinMonthlyPayment(balance):
                 adjustedBalance = updatedBalance 
                 #print(f'Month: {month} Balance: {adjustedBalance}')
                 month += 1
-            if adjustedBalance > 0:
+            if adjustedBalance < 0:
+                payment = bisection('high', payment)
                 month = 0
-                payment += 10
-                adjustedBalance = balance
+            elif adjustedBalance > 0:
+                payment = bisection('low', payment)
+                month = 0
+                    
         # Set success: break from loop and return new balance
     return print('Lowest Payment: ' + str(payment))
 
