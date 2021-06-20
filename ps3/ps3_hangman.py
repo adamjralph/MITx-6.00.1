@@ -9,7 +9,7 @@
 
 import random
 
-WORDLIST_FILENAME = "words.txt"
+WORDLIST_FILENAME = "/home/code/projects/MITx-6.00.1x/ps3/words.txt"
 
 def loadWords():
     """
