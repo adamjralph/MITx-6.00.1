@@ -1,4 +1,4 @@
-balance = 3329
+balance = 3926
 annualInterestRate = 0.2
 
 def monthlyInterestRate(annualInterestRate):
@@ -9,7 +9,7 @@ def monthlyInterestRate(annualInterestRate):
     '''
     return annualInterestRate / 12.0
 
-print(f'Monthly interest rate: {monthlyInterestRate(annualInterestRate)}')
+# print(f'Monthly interest rate: {monthlyInterestRate(annualInterestRate)}')
 
 def updateBalanceMonthly(balance):
     '''
@@ -22,7 +22,7 @@ def updateBalanceMonthly(balance):
     '''
     return balance + monthlyInterestRate(annualInterestRate) * balance
 
-print(f'Update balance: {updateBalanceMonthly(balance)}')
+# print(f'Update balance: {updateBalanceMonthly(balance)}')
     
 def createBasePayment(balance):
     '''
@@ -31,7 +31,7 @@ def createBasePayment(balance):
     required for findMinMonthlyPayment():
     Returns int or float
     '''
-    return balance / 12
+    return balance
 # delete this
 # payment = 100
 # delete this    
@@ -66,23 +66,23 @@ def findMinMonthlyPayment(balance):
         updateBalanceMonthly()
     '''
     success = False
-    increment = 0.1
     month = 0
-    payment = createBasePayment(balance)
+    payment = 10
+    adjustedBalance = balance
     while success == False:
-        if balance == 0:
+        if adjustedBalance <= 0:
             success = True
-        elif balance > 0:
+        else:
             while month < 12:
-                updatedBalance = newBalance(balance, payment)
-                print(updatedBalance)
-                balance = updatedBalance 
-                print(f'Month: {month} Balance: {balance}')
+                updatedBalance = newBalance(adjustedBalance, payment)
+                adjustedBalance = updatedBalance 
+                #print(f'Month: {month} Balance: {adjustedBalance}')
                 month += 1
-                payment += increment
-
-    print('outside of 12 month loop')
+            if adjustedBalance > 0:
+                month = 0
+                payment += 10
+                adjustedBalance = balance
         # Set success: break from loop and return new balance
-    return print(f'Lowest Payment: {payment}')
+    return print('Lowest Payment: ' + str(payment))
 
 findMinMonthlyPayment(balance)
