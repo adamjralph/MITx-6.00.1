@@ -43,6 +43,15 @@ def chooseWord(wordlist):
 # Load the list of words into the variable wordlist
 # so that it can be accessed from anywhere in the program
 wordlist = loadWords()
+lettersGuessed = []
+def guesses(lettersGuessed, guess):
+          '''
+          guess (string) single, lowercase
+          Called from hangan() when a guess is made.
+          Returns a list of guessed letters
+          '''
+          return lettersGuessed.append(guess) 
+
 
 def isWordGuessed(secretWord, lettersGuessed):
     '''
@@ -95,7 +104,24 @@ def hangman(secretWord):
 
     Follows the other limitations detailed in the problem write-up.
     '''
-    # FILL IN YOUR CODE HERE...
+    numberOfGuesses = 8
+
+    lettersGuessed = []
+
+    while isWordGuessed(secretWord, lettersGuessed) == False:
+
+        
+
+        print('I am thinking of a word that is {} letters long.'.format(len(chooseWord(wordlist))))
+        print('You have {} guesses left.'.format(numberOfGuesses))
+        print('Available letters: {}'.format(getAvailableLetters()))
+        guess = input('Please guess a letter: ')
+        if guess in secretWord:
+
+          
+
+
+    
 
 
 
@@ -107,4 +133,5 @@ def hangman(secretWord):
 # secretWord while you're testing)
 
 # secretWord = chooseWord(wordlist).lower()
-# hangman(secretWord)
+secretWord = 'eden'
+hangman(secretWord)
