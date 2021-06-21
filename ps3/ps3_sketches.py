@@ -1,4 +1,9 @@
+import string
+lettersGuessed = ['e', 'i', 'k', 'p', 'r', 's']
 
-secreWord = 'apple'
-lettersGuessed = 'pe'
-lettersPresent = [l.append(i) for i in secretWord if i in lettersGuessed else i.append('_ ')]
+def getAvailableLetters(lettersGuessed):
+
+    alphabet = string.ascii_lowercase
+    return ''.join([i for i in alphabet if i not in lettersGuessed])
+
+print(getAvailableLetters(lettersGuessed))

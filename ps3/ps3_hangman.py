@@ -8,6 +8,7 @@
 # (so be sure to read the docstrings!)
 
 import random
+import string
 
 WORDLIST_FILENAME = "/home/code/projects/MITx-6.00.1x/ps3/words.txt"
 
@@ -63,14 +64,7 @@ def getGuessedWord(secretWord, lettersGuessed):
     returns: string, comprised of letters and underscores that represents
       what letters in secretWord have been guessed so far.
     '''
-    l = []
-    word = list(secretWord)
-    for i in secretWord:
-      if i in lettersGuessed:
-        l.append(i)
-      else:
-        l.append('_ ')
-    return ''.join(l)
+    return ''.join([i if i in lettersGuessed else ' _ ' for i in secretWord])
 
 def getAvailableLetters(lettersGuessed):
     '''
@@ -78,8 +72,8 @@ def getAvailableLetters(lettersGuessed):
     returns: string, comprised of letters that represents what letters have not
       yet been guessed.
     '''
-    # FILL IN YOUR CODE HERE...
-    
+    alphabet = string.ascii_lowercase
+    return ''.join([i for i in alphabet if i not in lettersGuessed])  
 
 def hangman(secretWord):
     '''
