@@ -1,9 +1,18 @@
-import string
-lettersGuessed = ['e', 'i', 'k', 'p', 'r', 's']
 
-def getAvailableLetters(lettersGuessed):
+lettersGuessed = ['c', 'l', 'g']
+def guesses(lettersGuessed, guess):
+    '''
+    guess (string) single, lowercase
+    Called from hangan() when a guess is made.
+    Returns a list of guessed letters
+    '''
+    lettersGuessed.append(guess) 
+    return lettersGuessed
 
-    alphabet = string.ascii_lowercase
-    return ''.join([i for i in alphabet if i not in lettersGuessed])
+guess = 'a'
+lettersGuessed = guesses(lettersGuessed, guess)
+print(lettersGuessed)
 
-print(getAvailableLetters(lettersGuessed))
+guess = 'd'
+lettersGuessed = guesses(lettersGuessed, guess)
+print(lettersGuessed)
