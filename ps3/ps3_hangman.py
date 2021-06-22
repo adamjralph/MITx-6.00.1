@@ -43,15 +43,20 @@ def chooseWord(wordlist):
 # Load the list of words into the variable wordlist
 # so that it can be accessed from anywhere in the program
 wordlist = loadWords()
+
 lettersGuessed = []
+guess = ''
+
 def guesses(lettersGuessed, guess):
           '''
           guess (string) single, lowercase
           Called from hangan() when a guess is made.
           Returns a list of guessed letters
           '''
-          return lettersGuessed.append(guess) 
+          lettersGuessed.append(guess)
+          return lettersGuessed
 
+lettersGuessed = guesses(lettersGuessed, guess)
 
 def isWordGuessed(secretWord, lettersGuessed):
     '''
@@ -114,9 +119,13 @@ def hangman(secretWord):
 
         print('I am thinking of a word that is {} letters long.'.format(len(chooseWord(wordlist))))
         print('You have {} guesses left.'.format(numberOfGuesses))
-        print('Available letters: {}'.format(getAvailableLetters()))
+        print('Available letters: {}'.format(getAvailableLetters(lettersGuessed)))
         guess = input('Please guess a letter: ')
         if guess in secretWord:
+          lettersGuessed = guesses(guess, lettersGuessed)
+        else:
+          print('Oops! That letter is not in my word {}'.format(getGuessedWord(secretWord, lettersGuessed)))
+          break
 
           
 
