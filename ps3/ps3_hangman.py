@@ -123,6 +123,7 @@ def hangman(secretWord):
         guess = input('Please guess a letter: ')
         if guess in secretWord:
           lettersGuessed = guesses(guess, lettersGuessed)
+          print(getAvailableLetters(lettersGuessed))
         else:
           print('Oops! That letter is not in my word {}'.format(getGuessedWord(secretWord, lettersGuessed)))
           break
