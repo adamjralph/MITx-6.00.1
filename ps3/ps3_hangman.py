@@ -144,3 +144,5 @@ def hangman(secretWord):
 # secretWord = chooseWord(wordlist).lower()
 secretWord = 'eden'
 hangman(secretWord)
+
+# Find out why lettersGuessed is converted to string
