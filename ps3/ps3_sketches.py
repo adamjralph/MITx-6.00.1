@@ -16,3 +16,9 @@ print(lettersGuessed)
 guess = 'd'
 lettersGuessed = guesses(lettersGuessed, guess)
 print(lettersGuessed)
+
+def thing(*args):
+    
+    print(args)
+
+thing('a')

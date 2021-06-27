@@ -53,8 +53,7 @@ def guesses(lettersGuessed, guess):
           Called from hangan() when a guess is made.
           Returns a list of guessed letters
           '''
-          lettersGuessed.append(guess)
-          return lettersGuessed
+          return lettersGuessed.append(guess)
 
 lettersGuessed = guesses(lettersGuessed, guess)
 
@@ -117,25 +116,20 @@ def hangman(secretWord):
 
         
 
-        print('I am thinking of a word that is {} letters long.'.format(len(chooseWord(wordlist))))
+        print('I am thinking of a word that is {} letters long.'.format(len(secretWord)))
         print('You have {} guesses left.'.format(numberOfGuesses))
         print('Available letters: {}'.format(getAvailableLetters(lettersGuessed)))
         guess = input('Please guess a letter: ')
         if guess in secretWord:
-          lettersGuessed = guesses(guess, lettersGuessed)
+          guesses(lettersGuessed, guess)
+          wordSoFar = getGuessedWord(secretWord, lettersGuessed)
+          print(wordSoFar)
+          if len(wordSoFar) == len(secretWord):
+            isWordGuessed(secretWord, lettersGuessed) 
+            break
         else:
           print('Oops! That letter is not in my word {}'.format(getGuessedWord(secretWord, lettersGuessed)))
           break
-
-          
-
-
-    
-
-
-
-
-
 
 # When you've completed your hangman function, uncomment these two lines
 # and run this file to test! (hint: you might want to pick your own
