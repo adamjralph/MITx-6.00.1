@@ -114,6 +114,10 @@ def hangman(secretWord):
 
     lettersGuessed = []
 
+    def letters(secretWord, lettersGuessed):
+      l = [i for i in secretWord if i in lettersGuessed]
+      return ''.join([i for i in l])  
+    
     print('I am thinking of a word that is {} letters long.'.format(len(secretWord)))
     while gameOn == True:
       print('You have {} guesses left.'.format(numberOfGuesses))
@@ -126,17 +130,15 @@ def hangman(secretWord):
         guesses(lettersGuessed, guess)
         wordSoFar = getGuessedWord(secretWord, lettersGuessed)
         print('Good guess: {}'.format(wordSoFar))
-        print(len(lettersGuessed), len(secretWord))
-        if lettersGuessed == secretWord:
+        print(letters(secretWord, lettersGuessed), secretWord)
+        if letters(secretWord, lettersGuessed) == secretWord:
           gameOn == False  
           break
         else:
           continue
-      
       else:
         print('Oops! That letter is not in my word {}'.format(getGuessedWord(secretWord, lettersGuessed)))
         numberOfGuesses -= 1
-
 
 # When you've completed your hangman function, uncomment these two lines
 # and run this file to test! (hint: you might want to pick your own
