@@ -66,7 +66,7 @@ def hangman(secretWord):
         else:
           continue
       else:
-        print('Oops! That letter is not in my word {}'.format(getGuessedWord(secretWord, lettersGuessed)))
+        print('Oops! That letter is not in my word: {}'.format(getGuessedWord(secretWord, lettersGuessed)))
         print(breaks)
         numberOfGuesses -= 1
 
