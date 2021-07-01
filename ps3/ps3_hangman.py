@@ -147,6 +147,8 @@ def hangman(secretWord):
       else:
         print('Oops! That letter is not in my word {}'.format(getGuessedWord(secretWord, lettersGuessed)))
         print(breaks)
+        guesses(lettersGuessed, guess)
+        getAvailableLetters(lettersGuessed)
         numberOfGuesses -= 1
 
 # When you've completed your hangman function, uncomment these two lines
@@ -154,7 +156,7 @@ def hangman(secretWord):
 # secretWord while you're testing)
 
 # secretWord = chooseWord(wordlist).lower()
-secretWord = 'eden'
+secretWord = 'e'
 hangman(secretWord)
 
 # Find out why lettersGuessed is converted to string
