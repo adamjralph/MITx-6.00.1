@@ -114,7 +114,7 @@ def hangman(secretWord):
 
     lettersGuessed = []
 
-    breaks = '_ _ _ _ _ _ _ _ _ _ _ _'
+    breaks = '------------'
 
 
     def letters(secretWord, lettersGuessed):
@@ -130,15 +130,14 @@ def hangman(secretWord):
       guess = input('Please guess a letter: ')
       
       if guess in lettersGuessed:
+        wordSoFar = getGuessedWord(secretWord, lettersGuessed)
         print("Oops! You've already guessed that letter: {}".format(wordSoFar))
         print(breaks)
-        print('')
       elif guess in secretWord:
         guesses(lettersGuessed, guess)
         wordSoFar = getGuessedWord(secretWord, lettersGuessed)
         print('Good guess: {}'.format(wordSoFar))
         print(breaks)
-        print('')
         if letters(secretWord, lettersGuessed) == secretWord:
           print('Congratualtions, you won!')
           gameOn == False  
@@ -153,6 +152,7 @@ def hangman(secretWord):
         numberOfGuesses -= 1
         if numberOfGuesses == 0:
           print('sorry, you ran out of guesses. The word was {}'.format(secretWord))
+          gameOn == False
           break
 
 # When you've completed your hangman function, uncomment these two lines
