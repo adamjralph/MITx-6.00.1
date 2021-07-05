@@ -1,6 +1,7 @@
 
 venv/
 .pytest_cache
+__pycache__
 
 
 # Created by https://www.toptal.com/developers/gitignore/api/pycharm
