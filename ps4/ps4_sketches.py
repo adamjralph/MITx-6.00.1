@@ -16,6 +16,7 @@ def getWordScore(word, n):
     print(score)
     total = sum(score) * len(score)
     print(total)
+# How to decide if all letters in a hand have been used?
 
 word = 'gersdet'
 getWordScore(word, n)
