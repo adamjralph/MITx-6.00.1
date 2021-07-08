@@ -17,6 +17,9 @@ def getWordScore(word, n):
     total = sum(score) * len(score)
     print(total)
 # How to decide if all letters in a hand have been used?
+    if set(score) == len(word):
+        total += 50
+        
 
 word = 'gersdet'
 getWordScore(word, n)
