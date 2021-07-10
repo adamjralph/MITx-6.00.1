@@ -12,13 +12,12 @@ def getWordScore(word, n):
     score = [] 
     for letter in word:
         score.append(wordValues[letter])        
-
-    print(score)
     total = sum(score) * len(score)
-    print(total)
-# How to decide if all letters in a hand have been used?
-    if set(score) == len(word):
+    if n == len(word):
         total += 50
+    return total
+# How to decide if all letters in a hand have been used?
+    
         
 
 word = 'gersdet'
