@@ -10,9 +10,10 @@ wordValues = SCRABBLE_LETTER_VALUES
 
 # How to decide if all letters in a hand have been used?
     
-        
-
-word = 'gersdet'
-wordValues['a']-1
-print(wordValues['a'])
-print(wordValues)
+hand = {'a': 1, 'p': 2, 'l': 1, 'e': 1}       
+for k, v in hand.items():
+    print(v)
+#word = 'gersdet'
+#wordValues['a']-1
+#print(wordValues['a'])
+#print(wordValues)
