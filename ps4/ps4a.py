@@ -277,13 +277,16 @@ def playGame(wordList):
  
     2) When done playing the hand, repeat from step 1    
     """
+    n = 5
+    hand = dealHand(n)
     gameOn = True
     while gameOn == True:
         userInput = input('Enter n to deal a new hand, r to replay the last hand, or e to end game: ').lower()
         if userInput == 'e':
             gameOn = False
             break
-        #elif userInput == 'n'
+        elif userInput == 'n':
+            playHand(hand, wordList, n)
         #elif userInput == 'r':
             
 
