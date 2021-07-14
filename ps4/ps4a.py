@@ -279,7 +279,25 @@ def playGame(wordList):
     """
     userChoice = None
     newHand = None
+    u_or_c = None
     
+    def whoPlays(u_or_c):
+        choice = None
+        while choice== None:
+            u_or_c = input('Enter u to have yourself play, c to have the computer play: ')
+            if u_or_c == 'u':
+                playHand(newHand, wordList, HAND_SIZE)
+                u_or_c = None
+                choice = True
+            elif u_or_c == 'c':
+                compPlayHand(newHand, wordList, HAND_SIZE)
+                u_or_c = None
+                choice = True
+            else:
+                print('Invalid command.')
+                u_or_c == None
+                continue
+        
     while userChoice != 'e':
         
         question = 'Enter n to deal a new hand, r to replay the last hand, or e to end game: '
@@ -287,22 +305,21 @@ def playGame(wordList):
 
         if userChoice == 'e':
             break
-                
+        
         elif userChoice == 'n':
             newHand = dealHand(HAND_SIZE)
-            playHand(newHand, wordList, HAND_SIZE)
+            whoPlays(u_or_c)       
         
         elif userChoice == 'r':
             if newHand == None:
                 print('You have not played a hand yet. Please play a new hand first!')
                 continue
             else:
-                playHand(newHand, wordList, HAND_SIZE)
-        
+                whoPlays(u_or_c)    
         else:
             print('Invalid command.')
             continue
-    return
+    return       
 
 
 
