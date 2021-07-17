@@ -102,7 +102,7 @@ class Message(object):
         Returns: a dictionary mapping a letter (string) to 
                  another letter (string). 
         '''
-        pass #delete this line and replace with your code here
+         
 
     def apply_shift(self, shift):
         '''
