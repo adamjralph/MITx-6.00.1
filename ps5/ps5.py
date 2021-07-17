@@ -102,7 +102,26 @@ class Message(object):
         Returns: a dictionary mapping a letter (string) to 
                  another letter (string). 
         '''
-         
+        lower = string.ascii_lowercase
+        upper = string.ascii_uppercase
+        all_letters = lower + upper
+        # create dictionary that converts numbers into letters
+        number_to_letter = dict(zip(range(1, 53), all_letters))
+        print(number_to_letter)
+        # create dictionary that converts a letter into a number
+        letter_to_number = dict(zip(all_letters, range(1, 53)))
+        # return number 
+        number = letter_to_number[letter]
+        # print(number)
+
+        shifted_letter = number_to_letter[number+shift]
+        if number + shift > 52 and number > 26:
+            number -= 52
+            shifted_letter.upper()
+        elif number + shift > 26:
+            shifted_letter.lower()
+        else:
+            shifted_letter
 
     def apply_shift(self, shift):
         '''

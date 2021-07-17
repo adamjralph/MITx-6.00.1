@@ -17,7 +17,6 @@ letters_dict = {x: x for x in all_letters}
 index_list = list(range(52))
 numbers_dict = dict(zip(index_list, list(shift_dict.keys())))
 index_dict = dict(zip(index_list, list(shift_dict.values())))
-print(letters_dict)
 
 # shift = input('Please enter a shift amount: ')
 
@@ -29,14 +28,22 @@ def build_shift_dict(shift):
     all_letters = lower + upper
     # create dictionary that converts numbers into letters
     number_to_letter = dict(zip(range(1, 53), all_letters))
+    print(number_to_letter)
     # create dictionary that converts a letter into a number
     letter_to_number = dict(zip(all_letters, range(1, 53)))
     # return number 
     number = letter_to_number[letter]
-    print(number)
-    shifted_letter = number_to_letter[number+shift]
-    print(shifted_letter)
+    # print(number)
 
+    shifted_letter = number_to_letter[number+shift]
+    if number + shift > 52 and number > 26:
+        number -= 52
+        print(shifted_letter.upper())
+    elif number + shift > 26:
+        print(shifted_letter.lower())
+    else:
+        print(shifted_letter)
+    
 # input number + shift value
 # return letter
 
