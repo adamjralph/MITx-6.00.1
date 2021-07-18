@@ -107,7 +107,6 @@ class Message(object):
         all_letters = lower + upper
         # create dictionary that converts numbers into letters
         number_to_letter = dict(zip(range(1, 53), all_letters))
-        print(number_to_letter)
         # create dictionary that converts a letter into a number
         letter_to_number = dict(zip(all_letters, range(1, 53)))
         # return number 
@@ -117,11 +116,11 @@ class Message(object):
         shifted_letter = number_to_letter[number+shift]
         if number + shift > 52 and number > 26:
             number -= 52
-            shifted_letter.upper()
+            return shifted_letter.upper()
         elif number + shift > 26:
-            shifted_letter.lower()
+            return shifted_letter.lower()
         else:
-            shifted_letter
+            return shifted_letter
 
     def apply_shift(self, shift):
         '''
@@ -135,16 +134,16 @@ class Message(object):
         Returns: the message text (string) in which every character is shifted
              down the alphabet by the input shift
         '''
-        message_list = []
-        text = ''
-        symbols = " !@#$%^&*()-_+={}[]|\:;'<>?,./\""
-        self.get_message_text() = message
-        for i in message:
-            if i not in symbols:
-                message_list.append(i.build_shift_dict(shift))
-            else:
-                message_list.append(i)
-        return ''.join.message_list
+      #  message_list = []
+      #  text = ''
+      #  symbols = " !@#$%^&*()-_+={}[]|\:;'<>?,./\""
+      #  self.get_message_text = message
+      #  for i in message:
+      #      if i not in symbols:
+      #          message_list.append(i.build_shift_dict(shift))
+      #      else:
+      #          message_list.append(i)
+      #  return ''.join.message_list
 
 
 
@@ -246,3 +245,9 @@ print('Actual Output:', plaintext.get_message_text_encrypted())
 ciphertext = CiphertextMessage('jgnnq')
 print('Expected Output:', (24, 'hello'))
 print('Actual Output:', ciphertext.decrypt_message())
+
+a = Message('hello')
+print(a.get_message_text())
+# print(a.get_valid_words())
+print(a.build_shift_dict(4))
+
