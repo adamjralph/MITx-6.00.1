@@ -135,7 +135,18 @@ class Message(object):
         Returns: the message text (string) in which every character is shifted
              down the alphabet by the input shift
         '''
-        pass #delete this line and replace with your code here
+        message_list = []
+        text = ''
+        symbols = " !@#$%^&*()-_+={}[]|\:;'<>?,./\""
+        self.get_message_text() = message
+        for i in message:
+            if i not in symbols:
+                message_list.append(i.build_shift_dict(shift))
+            else:
+                message_list.append(i)
+        return ''.join.message_list
+
+
 
 class PlaintextMessage(Message):
     def __init__(self, text, shift):

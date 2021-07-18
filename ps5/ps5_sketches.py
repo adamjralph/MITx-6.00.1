@@ -28,7 +28,6 @@ def build_shift_dict(shift):
     all_letters = lower + upper
     # create dictionary that converts numbers into letters
     number_to_letter = dict(zip(range(1, 53), all_letters))
-    print(number_to_letter)
     # create dictionary that converts a letter into a number
     letter_to_number = dict(zip(all_letters, range(1, 53)))
     # return number 
