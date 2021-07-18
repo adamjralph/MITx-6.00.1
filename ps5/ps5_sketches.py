@@ -1,22 +1,16 @@
 import string
-
-lower = string.ascii_lowercase
-upper = string.ascii_uppercase
-all_letters = lower + upper
+shift = 4
 #print(lower)
 #print(upper)
-dict_lower = {x: x for x in lower}
-dict_upper = {x: x for x in upper}
-#print(dict_lower)
-#print(dict_upper)
-shift_dict = {**dict_lower, **dict_upper}
+lower = [x for x in string.ascii_lowercase]
+upper = [x for x in string.ascii_uppercase]
 
-print(len(shift_dict))
+letters = lower + upper
+values = letters[shift:] + letters[:shift]
+shift_dict = dict(zip(letters, values))
 
-letters_dict = {x: x for x in all_letters}
-index_list = list(range(52))
-numbers_dict = dict(zip(index_list, list(shift_dict.keys())))
-index_dict = dict(zip(index_list, list(shift_dict.values())))
+print(shift_dict)
+
 
 # shift = input('Please enter a shift amount: ')
 
@@ -46,4 +40,4 @@ def build_shift_dict(shift):
 # input number + shift value
 # return letter
 
-build_shift_dict(4)
+# build_shift_dict(4)

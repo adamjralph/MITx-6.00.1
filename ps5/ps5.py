@@ -102,25 +102,15 @@ class Message(object):
         Returns: a dictionary mapping a letter (string) to 
                  another letter (string). 
         '''
-        lower = string.ascii_lowercase
-        upper = string.ascii_uppercase
-        all_letters = lower + upper
-        # create dictionary that converts numbers into letters
-        number_to_letter = dict(zip(range(1, 53), all_letters))
-        # create dictionary that converts a letter into a number
-        letter_to_number = dict(zip(all_letters, range(1, 53)))
-        # return number 
-        number = letter_to_number[letter]
-        # print(number)
+        lower = [x for x in string.ascii_lowercase]
+        upper = [x for x in string.ascii_uppercase]
 
-        shifted_letter = number_to_letter[number+shift]
-        if number + shift > 52 and number > 26:
-            number -= 52
-            return shifted_letter.upper()
-        elif number + shift > 26:
-            return shifted_letter.lower()
-        else:
-            return shifted_letter
+        letters = lower + upper
+        values = letters[shift:] + letters[:shift]
+
+        shift_dict = dict(zip(letters, values))
+
+        return shift_dict 
 
     def apply_shift(self, shift):
         '''
@@ -134,18 +124,14 @@ class Message(object):
         Returns: the message text (string) in which every character is shifted
              down the alphabet by the input shift
         '''
-      #  message_list = []
-      #  text = ''
-      #  symbols = " !@#$%^&*()-_+={}[]|\:;'<>?,./\""
-      #  self.get_message_text = message
-      #  for i in message:
-      #      if i not in symbols:
-      #          message_list.append(i.build_shift_dict(shift))
-      #      else:
-      #          message_list.append(i)
-      #  return ''.join.message_list
-
-
+        message = [] 
+        for i in self.message_text:
+            if i not in self.build_shift_dict(shift).keys():
+                message.append(i)
+                continue
+            else:
+                message.append(self.build_shift_dict(shift)[i])
+        return ''.join(message)
 
 class PlaintextMessage(Message):
     def __init__(self, text, shift):
@@ -246,7 +232,7 @@ ciphertext = CiphertextMessage('jgnnq')
 print('Expected Output:', (24, 'hello'))
 print('Actual Output:', ciphertext.decrypt_message())
 
-a = Message('hello')
+a = Message('a')
 print(a.get_message_text())
 # print(a.get_valid_words())
 print(a.build_shift_dict(4))
